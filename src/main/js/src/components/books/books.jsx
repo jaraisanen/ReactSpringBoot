@@ -18,7 +18,8 @@ export default class Books extends Component {
                 books: data,
                 isLoading: false
                 })
-            }
+        })
+        .catch(error => console.error(error)
         );
     }
 
@@ -26,9 +27,28 @@ export default class Books extends Component {
         return(
           <div className="centered-container">
               <h2>Books of the database</h2>
-                {this.state.books.map((book, id) =>
-                    <div key={id}>{book.title}</div> 
-                )}
+              <table>
+                   <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                            <th>ISBN</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {this.state.books.map((book, id) =>
+                        <tr key={id}>
+                                <td>{book.title}</td>
+                                <td>{book.author}</td>
+                                <td>{book.year}</td>
+                                <td>{book.isbn}</td>
+                                <td>{book.price}</td>
+                            </tr>
+                    )}
+                    </tbody>
+                </table>
           </div>
     );
 }

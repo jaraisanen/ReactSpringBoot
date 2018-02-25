@@ -20,7 +20,7 @@ public class StoreController {
     // Rest Api provider methods
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    @CrossOrigin(origins = "http://localhost:8888")
+    @CrossOrigin(origins = "http://127.0.0.1:8888")
     public @ResponseBody
     List<Book> bookListRest() {
         return (List<Book>) repository.findAll();
