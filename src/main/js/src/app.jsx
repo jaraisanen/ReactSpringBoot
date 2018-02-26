@@ -11,7 +11,7 @@ import "styles/index.scss";
 class App extends Component {
 	render() {
 		return (
-			<Tabs defaultTab="map">
+			<Tabs defaultTab="books">
 				<TabList>
 					<Tab tabFor="map">OpenWeatherMap</Tab>
 					<Tab tabFor="lib">Libraries</Tab>

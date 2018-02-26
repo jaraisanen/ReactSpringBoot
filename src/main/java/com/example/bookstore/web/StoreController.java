@@ -19,8 +19,7 @@ public class StoreController {
 
     // Rest Api provider methods
 
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    @CrossOrigin(origins = "http://127.0.0.1:8888")
+    @RequestMapping("/books")
     public @ResponseBody
     List<Book> bookListRest() {
         return (List<Book>) repository.findAll();
@@ -32,3 +31,4 @@ public class StoreController {
         return repository.findOne(bookId);
     }
 }
+

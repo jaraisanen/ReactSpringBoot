@@ -34,7 +34,7 @@ public class BookStoreApplication extends SpringBootServletInitializer {
 			brepository.save(new Book("Harry Potter", "J.K.Rowling", "2014", "12345-21", "12,23"));
 			brepository.save(new Book("Da Vinci Code", "Robert Langdon", "2001", "1232-23", "11,23"));
 
-			log.info("Showing all students");
+			log.info("Showing all books");
 			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
 			}

@@ -1,13 +1,9 @@
-### Simple React expirements 
 
-# OpenWeatherMap:
-
-```
-Simple API (fetch) calls with states
-```
-
-# Finnish Library search
+# To get started:
 
 ```
-Passing props and states to other components and showing results as a table
+'npm install'
+```
+```
+'npm start'
 ```
