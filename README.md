@@ -12,5 +12,5 @@ Passing props and states to other components and showing results as a table
 ```
 # CRUD BookStore
 ```
-GET, UPDATE, DELETE and POST with Spring Boot & React UI
+CRUD with Spring Boot & React UI
 ```
