@@ -1,11 +1,10 @@
 import React, {Component} from "react";
-import BookTable from "./book-table";
+import BookTable from "./Table";
 
 export default class Books extends Component {
 
     constructor(props) {
         super(props);
-        this.deleteBook = this.deleteBook.bind(this);
         this.state = {
             books: [],
             isLoading: false
@@ -13,18 +12,19 @@ export default class Books extends Component {
     }
 
     componentDidMount() {
-        this.fetchBooks();
         this.setState({isLoading: true});
+        this.fetchBooks();
+      
 
     }
 
-    deleteBook(book) {
+    deleteBook = (book) => {
         fetch(book._links.self.href, {method: 'DELETE'})
             .then(() => this.fetchBooks())
             .catch(err => console.error(err));
     }
 
-    fetchBooks() {
+    fetchBooks = () => {
         fetch('/api/books')
             .then(result => result.json())
             .then(data => {

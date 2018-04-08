@@ -1,0 +1,28 @@
+.form-container {
+    text-align: center;
+    text-justify: inter-word;
+    width: 60%;
+    padding: 30px;
+    font-size: 14px;
+    margin: 50px auto;
+    -moz-box-shadow: 0px, 0px, 15px, rgba(0, 0, 0, 0.22);
+    box-shadow: 0px, 0px, 15px, rgba(0, 0, 0, 0.22);
+    border: 5px solid rgb(2, 0, 0);
+    border-style: outset;
+  }
+
+.form-group {
+    padding: 10px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 2;
+}
+
+.form-group input {
+    display: block;
+    width: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
