@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import AuthService from '../utils/AuthService'
 import './Login.css';
 
 export default class Login extends Component {
 
   constructor(props) {
     super(props);
+    this.Auth = new AuthService();
     this.state = {
       username: "",
       password: ""
@@ -21,32 +23,26 @@ export default class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8080/username=" + this.state.username + "&password=" + this.state.password, {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-        body: JSON.stringify(this.state.username, this.state.password)
-      })
-      .then(function (response) {
-        if (response.data.code === 200) {
-          window.location('http://localhost:8080/books')
-        } else {
-          console.log(response.data.code)
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    this.Auth.login(this.state.username, this.state.password)
+            .then(res => {
+               this.props.history.replace('/');
+            })
+            .catch(err => {
+              console.log(err)
+            })
   }
+
+  componentWillMount(){
+    if(this.Auth.loggedIn())
+        this.props.history.replace('/');
+}
+
 
   render() {
     return (
       <div className="form-container">
         <h1>Login</h1>
-        <form onClick={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>
               Username:

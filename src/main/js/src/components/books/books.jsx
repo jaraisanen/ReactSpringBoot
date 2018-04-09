@@ -7,15 +7,12 @@ export default class Books extends Component {
         super(props);
         this.state = {
             books: [],
-            isLoading: false
+            isLoading: true
         }
     }
 
     componentDidMount() {
-        this.setState({isLoading: true});
         this.fetchBooks();
-      
-
     }
 
     deleteBook = (book) => {
@@ -25,11 +22,13 @@ export default class Books extends Component {
     }
 
     fetchBooks = () => {
-        fetch('/api/books')
+        fetch('/books')
             .then(result => result.json())
             .then(data => {
+                console.log("data")
+                console.log(data)
                 this.setState({
-                    books: data._embedded.books,
+                    books: data,
                     isLoading: false
                 })
             })
@@ -40,6 +39,7 @@ export default class Books extends Component {
         if (this.state.isLoading) {
             return <p>Loading...</p>;
         }
+        
 
         return (
             <div className="centered-container">
