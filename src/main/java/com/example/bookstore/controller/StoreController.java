@@ -24,18 +24,6 @@ public class StoreController {
 
     // Rest Api provider methods
 
-    @RequestMapping("/books")
-    public @ResponseBody
-    List<Book> bookListRest() {
-        return (List<Book>) repository.findAll();
-    }
-
-    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    Book findBookRest(@PathVariable("id") Long bookId) {
-        return repository.findOne(bookId);
-    }
-
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public void saveUser(@RequestBody AppUser user) {
         userService.save(user);

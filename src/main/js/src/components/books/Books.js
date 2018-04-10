@@ -22,13 +22,13 @@ export default class Books extends Component {
     }
 
     fetchBooks = () => {
-        fetch('/books')
+        fetch('api/books')        
             .then(result => result.json())
             .then(data => {
                 console.log("data")
                 console.log(data)
                 this.setState({
-                    books: data,
+                    books: data._embedded.books,
                     isLoading: false
                 })
             })
