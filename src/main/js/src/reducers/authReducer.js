@@ -1,8 +1,13 @@
-import {AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR} from '../actions/authActions';
+import {AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR} from '../actions/auth/authActions';
 
 // states for handling if user is authenticated or not
 
-export default function (state = {}, action) {
+const defaultState = {
+  authenticated: false,
+  error: null
+};
+
+export default function (state = defaultState, action) {
   switch (action.type) {
     case AUTHENTICATED:
       return {
@@ -19,7 +24,7 @@ export default function (state = {}, action) {
         ...state,
         error: action.payload
       };
-      // no default
+    default:
+      return state;
   }
-  return state;
 }

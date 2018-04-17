@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/authActions';
+import * as actions from '../../actions/auth/authActions'
 
 class Logout extends Component {
   componentWillMount() {
@@ -9,7 +9,7 @@ class Logout extends Component {
   }
 
   render() {
-    return <div className="content">Logged out succesfully</div>
+    return <div className="form-container">Logged out succesfully</div>
   }
 }
 

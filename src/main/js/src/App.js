@@ -1,18 +1,16 @@
-import React, {Component} from 'react';
-import Books from './components/books/Books';
-import Header from './components/header/header'
+import React from 'react';
+import Header from './components/header/Header'
 import './App.css';
 
-class App extends Component {
-
+const App = props => ({
   render() {
     return (
       <div className="App">
         <Header/>
-        <Books/>
+        <main>{props.children}</main>
       </div>
     );
   }
-}
+});
 
 export default App;

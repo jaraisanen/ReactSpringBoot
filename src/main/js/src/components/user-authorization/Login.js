@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {logInAction} from '../../actions/authActions'
+import {logInAction} from '../../actions/auth/authActions'
 import { connect } from 'react-redux'
 import './Login.css';
 
@@ -26,9 +26,9 @@ class Login extends Component {
     const {handleSubmit} = this.props;
     return (
       <div className="form-container">
-        <div className="container">
           <h2>Log In</h2>
           <form onSubmit={handleSubmit(this.submit)}>
+            <div className="field-group">
             <Field 
               name="username"
               component="input"
@@ -39,10 +39,10 @@ class Login extends Component {
               component="input"
               type="password"
               placeholder="Password"/>
-            <button type="submit" className="blue">Sign In</button>
+            <button type="submit" className="green-button">Sign In</button>
+            </div>
           </form>
           {this.errorMessage()}
-        </div>
       </div>
     );
   }

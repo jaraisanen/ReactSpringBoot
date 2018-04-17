@@ -23,7 +23,7 @@ export function logInAction({
 
       dispatch({type: AUTHENTICATED});
       localStorage.setItem('user', res.data.token);
-      history.push('/');
+      history.push('/books');
     } catch (error) {
       dispatch({type: AUTHENTICATION_ERROR, payload: 'Invalid username or password'});
     }
@@ -31,7 +31,7 @@ export function logInAction({
 }
 
 // user logout
-export function logOutAction() {
+export function logOutAction(history) {
   localStorage.clear();
   return {type: UNAUTHENTICATED};
 

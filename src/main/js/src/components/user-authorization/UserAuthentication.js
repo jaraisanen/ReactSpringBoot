@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 export default function (ComposedComponent) {
-  class NotAuthenticated extends Component {
+  class UserAuthentication extends Component {
     componentWillMount() {
-      if (this.props.authenticated) {
-        this.props.history.push('/');
+      if (!this.props.authenticated) {
+        this.props.history.push('/logout');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (nextProps.authenticated) {
-        this.props.history.push('/');
+      if (!nextProps.authenticated) {
+        this.props.history.push('/logout');
       }
     }
 
@@ -29,5 +29,5 @@ export default function (ComposedComponent) {
     return { authenticated: state.auth.authenticated };
   }
 
-  return connect(mapStateToProps)(NotAuthenticated);
+  return connect(mapStateToProps)(UserAuthentication);
 }

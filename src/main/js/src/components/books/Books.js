@@ -1,51 +1,54 @@
-import React, {Component} from "react";
-import BookTable from "./Table";
+import React, {Component} from 'react';
+import BookRow from './BookRow';
+import {connect} from "react-redux";
+import {getBooks} from '../../actions/books/bookActions';
+import './Books.css'
 
-export default class Books extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            books: [],
-            isLoading: true
-        }
-    }
+class Books extends Component {
 
     componentDidMount() {
-        this.fetchBooks();
+        this.props.dispatch(getBooks());
     }
 
-    deleteBook = (book) => {
-        fetch(book._links.self.href, {method: 'DELETE'})
-            .then(() => this.fetchBooks())
-            .catch(err => console.error(err));
-    }
-
-    fetchBooks = () => {
-        fetch('api/books')        
-            .then(result => result.json())
-            .then(data => {
-                console.log("data")
-                console.log(data)
-                this.setState({
-                    books: data._embedded.books,
-                    isLoading: false
-                })
-            })
-            .catch(error => console.error(error));
-    }
-    
     render() {
-        if (this.state.isLoading) {
-            return <p>Loading...</p>;
+        const {listError, listLoading, listBooks} = this.props;
+
+        if (listError) {
+            return <div className="error-message">Error! {listError.message}</div>;
         }
-        
+
+        if (listLoading) {
+            return <div className="info-message">Loading...</div>;
+        }
 
         return (
             <div className="centered-container">
                 <h2>Books of the database</h2>
-                <BookTable data={this.state.books} deleteBook={this.deleteBook}/>
+                <table>
+                    <thead className="table-header">
+                        <tr>
+                            <th className="one">Title</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                            <th>ISBN</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listBooks.map(book => 
+                        <BookRow key={book._links.self.href} book={book} />
+                        )}
+                    </tbody>
+                </table>
             </div>
         );
     }
 }
+const mapStateToProps = state => ({
+    listBooks: state.books.bookList.allBooks,
+    listLoading: state.books.bookList.listLoading,
+    listError: state.books.bookList.listError,
+});
+
+export default connect(mapStateToProps)(Books);
+

@@ -6,9 +6,10 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import Routes from './routes'
 import reducers from './reducers/index';
-import { AUTHENTICATED } from './actions/authActions';
-import './index.css';
+import { AUTHENTICATED } from './actions/auth/authActions';
 import registerServiceWorker from './registerServiceWorker';
+import App from './App';
+import './index.css';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -23,7 +24,9 @@ if (user) {
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Routes/>
+            <App>
+                <Routes/>
+            </App>    
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();

@@ -1,34 +1,20 @@
 body {
-  background: linear-gradient(to right, rgb(200,224,217), rgb(45, 130, 179));
+  background: rgb(255, 255, 255)
 }
 
-p, h1 {
+h2 {
   font-family: 'Roboto', sans-serif;
+  font-size: 4vh;
 }
 
-th, td {
-  width: 100%;
-  border: 1px solid rgb(85, 28, 28);
-
-}
-
-.small-img {
-  display: block;
-  width: 45%;
-  margin: auto;
-
-}
-
-.weather-img {
-  display: block;
-  width: 5%;
-  margin: auto;
+p {
+  font-family: 'Roboto', sans-serif;
 }
 
 .centered-container {
   text-align: center;
   text-justify: inter-word;
-  width: 50%;
+  width: 80%;
   padding: 30px;
   font-size: 14px;
   margin: 50px auto;
@@ -38,8 +24,48 @@ th, td {
   border-style: outset;
 }
 
-.search-container {
-  padding-bottom: 2%;
+.green-button {
+  width: 10vh;
+  height: 30px;
+  background-color: green;
+  color: white;
+  border: 0;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
+.red-button {
+  width: 100%;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.error-message {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  margin-top: 1%;
+  border-radius: 5px;
+  font-size: 15px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.info-message {
+  background-color: yellow;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  margin-top: 1%;
+  border-radius: 5px;
+  font-size: 15px;
+  overflow: hidden;
+}
 
