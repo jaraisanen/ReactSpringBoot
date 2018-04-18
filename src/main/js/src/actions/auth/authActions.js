@@ -1,11 +1,5 @@
 import axios from 'axios'
-
-// constants for login
-export const AUTHENTICATED = 'authenticated_user';
-export const UNAUTHENTICATED = 'unauthenticated_user';
-export const AUTHENTICATION_ERROR = 'authentication_error';
-
-const URL = 'http://localhost:8080';
+import {AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR, URL} from '../ActionTypes';
 
 /*
  * action creator for generating POST method
@@ -25,13 +19,16 @@ export function logInAction({
       localStorage.setItem('user', res.data.token);
       history.push('/books');
     } catch (error) {
-      dispatch({type: AUTHENTICATION_ERROR, payload: 'Invalid username or password'});
+      dispatch({
+        type: AUTHENTICATION_ERROR,
+        payload: 'Problem with: ' + error
+      });
     }
   };
 }
 
 // user logout
-export function logOutAction(history) {
+export function logOutAction() {
   localStorage.clear();
   return {type: UNAUTHENTICATED};
 

@@ -1,19 +1,9 @@
-a {
+.header-link {
     text-decoration: none !important;
     color: wheat;
     display: inline-block;
-}
-
-span {
-    padding: 2%;
-    font-size: 2vh;
-}
-
-
-ul { 
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    padding: 1%;
+    font-size:20px;
 }
 
 .navigation {

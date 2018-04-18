@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {logInAction} from '../../actions/auth/authActions'
+import {logInAction} from '../../actions/auth/AuthActions'
 import { connect } from 'react-redux'
-import './Login.css';
 
 class Login extends Component {
 
@@ -16,7 +15,7 @@ class Login extends Component {
     if (this.props.errorMessage) {
       return (
         <div className="error-message">
-          {this.props.errorMessage}
+          <p>{this.props.errorMessage}</p>
         </div>
       );
     }
@@ -25,7 +24,7 @@ class Login extends Component {
   render() {
     const {handleSubmit} = this.props;
     return (
-      <div className="form-container">
+      <div className="centered-container">
           <h2>Log In</h2>
           <form onSubmit={handleSubmit(this.submit)}>
             <div className="field-group">

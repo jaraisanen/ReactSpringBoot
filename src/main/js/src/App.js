@@ -5,7 +5,7 @@ import './App.css';
 const App = props => ({
   render() {
     return (
-      <div className="App">
+      <div>
         <Header/>
         <main>{props.children}</main>
       </div>

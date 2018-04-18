@@ -1,5 +1,40 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  background: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+td {
+  width: calc(100%/6);
+}
+
+h2 {
+  min-width: 3vh;
+  font-size: 4vh;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+input {
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 1%;
+  padding: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 12rem;
+}
+
+ul { 
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

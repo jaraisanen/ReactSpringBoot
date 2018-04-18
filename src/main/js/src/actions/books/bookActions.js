@@ -5,11 +5,14 @@ import {
     GETBOOKS_ERROR,
     DELETEBOOK_LOADING,
     DELETEBOOK_SUCCESS,
-    DELETEBOOK_ERROR
-} from '../actionTypes';
+    DELETEBOOK_ERROR,
+    ADDBOOK_LOADING,
+    ADDBOOK_SUCCESS,
+    ADDBOOK_ERROR,
+    URL,
+    TOKEN
+} from '../ActionTypes';
 
-const URL = 'http://localhost:8080/books';
-const token = `Bearer ` + localStorage.getItem('user');
 
 export const getBooksSuccess = books => ({type: GETBOOKS_SUCCESS, payload: {
         books
@@ -19,9 +22,9 @@ export function getBooks() {
     return async(dispatch) => {
         try {
             dispatch({type: GETBOOKS_LOADING});
-            const res = await axios.get(`${URL}`, {
+            const res = await axios.get(`${URL}/books/`, {
                 headers: {
-                    "Authorization": `${token}`
+                    "Authorization": `${TOKEN}`
                 }
             });
             dispatch(getBooksSuccess(res.data._embedded.books))
@@ -33,24 +36,38 @@ export function getBooks() {
     }
 }
 
+export function addBook(newBook, history) {
+    return async(dispatch) => {
+        try {
+            dispatch({type: ADDBOOK_LOADING});
+            const res = await axios.post(`${URL}/books/`, {newBook});
+            dispatch({type: ADDBOOK_SUCCESS});
+            history.push('/books');
+            console.log(res);
+        } catch (error) {
+            dispatch({type: ADDBOOK_ERROR, payload: 'Error: ' + error});
+        }
+    }
+}
+
 export function deleteBook(bookUrl) {
     console.log(bookUrl);
     return async(dispatch) => {
         dispatch({type: DELETEBOOK_LOADING});
         await fetch(bookUrl, {
-        method: "DELETE",
-        headers: {
-          "Authorization": token
-        },
-        credentials: 'same-origin',
-        mode: 'cors'
-      }).then(response => {
-        console.log(response)
-        dispatch({type: DELETEBOOK_SUCCESS, payload: response});
-        return response.text()
-      }).catch(error => {
-        dispatch({type: DELETEBOOK_ERROR, payload: 'Problem with deleting book'});  
-      })
+            method: "DELETE",
+            headers: {
+                "Authorization": TOKEN
+            },
+            mode: 'cors'
+        }).then(response => {
+            console.log(response)
+            dispatch({type: DELETEBOOK_SUCCESS, payload: response});
+            console.log(response.json());
+            return response.json()
+        }).catch(error => {
+            dispatch({type: DELETEBOOK_ERROR, payload: 'Problem with deleting book'});
+        })
     }
 }
 

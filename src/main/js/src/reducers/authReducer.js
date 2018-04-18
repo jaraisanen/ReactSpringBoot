@@ -1,4 +1,4 @@
-import {AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR} from '../actions/auth/authActions';
+import {AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR} from '../actions/ActionTypes';
 
 // states for handling if user is authenticated or not
 

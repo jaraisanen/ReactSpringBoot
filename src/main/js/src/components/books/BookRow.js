@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {deleteBook} from '../../actions/books/bookActions';
+import {deleteBook} from '../../actions/books/BookActions';
 
 class BookRow extends Component {
 

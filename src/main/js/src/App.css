@@ -1,17 +1,6 @@
-body {
-  background: rgb(255, 255, 255)
-}
-
-h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 4vh;
-}
-
-p {
-  font-family: 'Roboto', sans-serif;
-}
 
 .centered-container {
+  background-color: rgba(245, 245, 245, 0.479);
   text-align: center;
   text-justify: inter-word;
   width: 80%;
@@ -22,6 +11,7 @@ p {
   box-shadow: 0px, 0px, 15px, rgba(0, 0, 0, 0.22);
   border: 5px solid rgb(2, 0, 0);
   border-style: outset;
+  border-radius: 6px;
 }
 
 .green-button {
@@ -47,6 +37,15 @@ p {
   font-size: 16px;
 }
 
+.blue-button {
+  background-color: white;
+  color: blue;
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 5%;
+  float: right; 
+}
+
 .error-message {
   background-color: red;
   color: white;
@@ -69,3 +68,6 @@ p {
   overflow: hidden;
 }
 
+.inline-element {
+  display: inline-block;
+}

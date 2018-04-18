@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import Routes from './routes'
 import reducers from './reducers/index';
-import { AUTHENTICATED } from './actions/auth/authActions';
+import { AUTHENTICATED, USER } from './actions/ActionTypes';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import './index.css';
@@ -14,10 +14,8 @@ import './index.css';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-const user = localStorage.getItem('user');
-
 // if user returns true, dispach user to be authenticated
-if (user) {
+if (USER) {
     store.dispatch({ type: AUTHENTICATED });
   }
 

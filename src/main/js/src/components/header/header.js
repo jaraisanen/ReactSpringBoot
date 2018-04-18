@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import './header.css'
+import './Header.css'
 
 class Header extends Component {
     // switch navigation links arrcording to authentication
     navbarLinks() {
         if (this.props.authenticated) {
           return [
-            <span key="home"><Link to="/books">Books</Link></span>,
-            <span key="logout"><Link to="/logout">Logout</Link></span>
+            <span key="home"><Link className="header-link" to="/books">Books</Link></span>,
+            <span key="logout"><Link className="header-link" to="/logout">Logout</Link></span>
           ];
         }
         return [
-          <span key="login"><Link to="/">Log in</Link></span>,
+          <span key="login"><Link className="header-link" to="/">Log in</Link></span>,
           //<li key="signup"><Link to="/signup">Sign up</Link></li>
         ];
       }
@@ -21,7 +21,7 @@ class Header extends Component {
         return (
           <nav className="navigation">
             <div className="container">
-              <Link className="link" to="/"><span className="title">Bookstore</span></Link>
+              <Link className="header-link" to="/"><span className="title">Bookstore</span></Link>
               <ul>
                 {this.navbarLinks()}
               </ul>

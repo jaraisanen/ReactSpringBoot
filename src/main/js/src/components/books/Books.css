@@ -15,12 +15,3 @@
     border: none;
     overflow: hidden;
 }
-
-table {
-    table-layout: fixed;
-    width: 100%;
-}
-
-td {
-    width: calc(100%/6);
-}
