@@ -2,5 +2,5 @@
 
 # CRUD BookStore
 ```
-CRUD with Spring Boot & React UI + Json Web Token authentication
+CRUD with Spring Boot & React + Redux UI + Json Web Token authentication
 ```
