@@ -13,7 +13,6 @@ import {
     TOKEN
 } from '../ActionTypes';
 
-
 export const getBooksSuccess = books => ({type: GETBOOKS_SUCCESS, payload: {
         books
     }});
@@ -27,6 +26,7 @@ export function getBooks() {
                     "Authorization": `${TOKEN}`
                 }
             });
+            console.log(res);
             dispatch(getBooksSuccess(res.data._embedded.books))
             return res.data._embedded.books;
 
@@ -37,27 +37,40 @@ export function getBooks() {
 }
 
 export function addBook(newBook, history) {
+    console.log(newBook);
+    const jsonBook = JSON.stringify(newBook);
+    console.log(jsonBook);
     return async(dispatch) => {
         try {
             dispatch({type: ADDBOOK_LOADING});
-            const res = await axios.post(`${URL}/books/`, {newBook});
+            const res = await axios.post(`${URL}/books/`, {
+                jsonBook
+            }, {
+                headers: {
+                    "Authorization": `${TOKEN}`
+                }
+            });
             dispatch({type: ADDBOOK_SUCCESS});
             history.push('/books');
             console.log(res);
         } catch (error) {
-            dispatch({type: ADDBOOK_ERROR, payload: 'Error: ' + error});
+            dispatch({
+                type: ADDBOOK_ERROR,
+                payload: 'Error: ' + error
+            });
         }
     }
 }
 
-export function deleteBook(bookUrl) {
-    console.log(bookUrl);
+/* export function deleteBook(bookUrl) {
+    console.log(`${bookUrl}`);
+    console.log(`${TOKEN}`);
     return async(dispatch) => {
         dispatch({type: DELETEBOOK_LOADING});
-        await fetch(bookUrl, {
+        await fetch(`${bookUrl}`, {
             method: "DELETE",
             headers: {
-                "Authorization": TOKEN
+                "Authorization": `${TOKEN}`
             },
             mode: 'cors'
         }).then(response => {
@@ -70,16 +83,16 @@ export function deleteBook(bookUrl) {
         })
     }
 }
+*/
 
-/*
 export function deleteBook(bookUrl) {
-    console.log(token)
+    console.log(TOKEN)
     return async(dispatch) => {
         try {
             dispatch({type: DELETEBOOK_LOADING});
-            const res = await axios.delete(`${URL}`, {
+            const res = await axios.delete(`${bookUrl}`, {
                 headers: {
-                    "Authorization": `${token}`
+                    "Authorization": `${TOKEN}`
                 }
             });
             console.log(dispatch);
@@ -90,4 +103,3 @@ export function deleteBook(bookUrl) {
         }
     }
 }
-*/

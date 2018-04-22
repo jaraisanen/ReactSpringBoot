@@ -52,6 +52,8 @@ public class JwtAuthentication extends OncePerRequestFilter {
                 logger.error(" Username or Password invalid.");
             }
         } else {
+            logger.warn("Header");
+            logger.warn(header);
             logger.warn("Couldn't find bearer string, will ignore the header");
         }
 
