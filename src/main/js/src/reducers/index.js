@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
 import { reducer as FormReducer } from 'redux-form';
 import AuthReducer from './AuthReducer';
 import BookReducer from './BookReducer'; 
@@ -9,7 +10,8 @@ const rootReducer = combineReducers({
     form: FormReducer,
     auth: AuthReducer,
     books: BookReducer,
-    newBook: NewBookReducer
+    newBook: NewBookReducer,
+    router: routerReducer
 });
 
 export default rootReducer;

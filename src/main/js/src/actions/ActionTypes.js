@@ -14,6 +14,6 @@ export const ADDBOOK_LOADING = 'ADDBOOK_LOADING';
 export const ADDBOOK_SUCCESS = 'ADDBOOK_SUCCESS';
 export const ADDBOOK_ERROR = 'ADDBOOK_ERROR';
 
-export const URL = 'http://localhost:8080/';
+export const URL = 'http://localhost:8080';
 export const USER = localStorage.getItem('user');
 export const TOKEN =  `Bearer ` + localStorage.getItem('user');

@@ -5,7 +5,7 @@ import {deleteBook} from '../../actions/books/BookActions';
 class BookRow extends Component {
 
     onDeleteClick(bookId) {
-        this.props.dispatch(deleteBook(bookId));
+        this.props.dispatch(deleteBook(bookId, this.props.history));
     }
 
     render() {
@@ -24,7 +24,7 @@ class BookRow extends Component {
 }
 
 const mapStateToProps = state => ({
-    deleteBooks: state.books.bookDelete.deleteBook,
+    deleteBook: state.books.bookDelete.deleteBook,
     deleteLoading: state.books.bookDelete.deleteLoading,
     deleteError: state.books.bookDelete.deleteBookError,
 });

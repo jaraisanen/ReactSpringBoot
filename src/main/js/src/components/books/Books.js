@@ -8,9 +8,7 @@ import './Books.css'
 class Books extends Component {
 
     componentDidMount() {
-        this
-            .props
-            .dispatch(getBooks());
+        this.props.dispatch(getBooks());
     }
 
     render() {

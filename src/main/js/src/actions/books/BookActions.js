@@ -12,6 +12,7 @@ import {
     URL,
     TOKEN
 } from '../ActionTypes';
+import History from '../../utils/History'
 
 export const getBooksSuccess = books => ({type: GETBOOKS_SUCCESS, payload: {
         books
@@ -26,7 +27,6 @@ export function getBooks() {
                     "Authorization": `${TOKEN}`
                 }
             });
-            console.log(res);
             dispatch(getBooksSuccess(res.data._embedded.books))
             return res.data._embedded.books;
 
@@ -36,15 +36,22 @@ export function getBooks() {
     }
 }
 
-export function addBook(newBook, history) {
-    console.log(newBook);
-    const jsonBook = JSON.stringify(newBook);
-    console.log(jsonBook);
+export function addBook({
+    title,
+    author,
+    year,
+    isbn,
+    price
+}, history) {
     return async(dispatch) => {
         try {
             dispatch({type: ADDBOOK_LOADING});
-            const res = await axios.post(`${URL}/books/`, {
-                jsonBook
+              await axios.post(`${URL}/books/`, {
+                title,
+                author,
+                year,
+                isbn,
+                price
             }, {
                 headers: {
                     "Authorization": `${TOKEN}`
@@ -52,7 +59,6 @@ export function addBook(newBook, history) {
             });
             dispatch({type: ADDBOOK_SUCCESS});
             history.push('/books');
-            console.log(res);
         } catch (error) {
             dispatch({
                 type: ADDBOOK_ERROR,
@@ -62,31 +68,7 @@ export function addBook(newBook, history) {
     }
 }
 
-/* export function deleteBook(bookUrl) {
-    console.log(`${bookUrl}`);
-    console.log(`${TOKEN}`);
-    return async(dispatch) => {
-        dispatch({type: DELETEBOOK_LOADING});
-        await fetch(`${bookUrl}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `${TOKEN}`
-            },
-            mode: 'cors'
-        }).then(response => {
-            console.log(response)
-            dispatch({type: DELETEBOOK_SUCCESS, payload: response});
-            console.log(response.json());
-            return response.json()
-        }).catch(error => {
-            dispatch({type: DELETEBOOK_ERROR, payload: 'Problem with deleting book'});
-        })
-    }
-}
-*/
-
-export function deleteBook(bookUrl) {
-    console.log(TOKEN)
+export function deleteBook(bookUrl, history) {
     return async(dispatch) => {
         try {
             dispatch({type: DELETEBOOK_LOADING});
@@ -95,9 +77,8 @@ export function deleteBook(bookUrl) {
                     "Authorization": `${TOKEN}`
                 }
             });
-            console.log(dispatch);
             dispatch({type: DELETEBOOK_SUCCESS, payload: res});
-            console.log(res);
+            History.go('/books');
         } catch (error) {
             dispatch({type: DELETEBOOK_ERROR, payload: 'Problem with deleting book'});
         }

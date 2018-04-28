@@ -44,7 +44,8 @@ class NewBook extends Component {
                         <Field name="year" component="input" type="text" placeholder="Year"/>
                         <Field name="isbn" component="input" type="text" placeholder="ISBN"/>
                         <Field name="price" component="input" type="text" placeholder="Price"/>
-                        <button type="submit" className="green-button">Save book</button>
+                        <button type="submit" className="green-button">Save</button>
+                        <button type="text" className="cancel-button" onClick={() => this.props.history.push("/books")}>Cancel</button>
                     </div>
                 </form>
             </div>
